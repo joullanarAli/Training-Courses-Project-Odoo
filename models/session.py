@@ -12,6 +12,10 @@ class Session(models.Model):
     actual_date = fields.Date('Actual Date', copy=False)
     course_id = fields.Many2one('training.course', string ="Course", copy = False)
 
+    _sql_constraints=[
+        ('unique_name', 'unique (name)', 'Session name already exists!'),
+    ]
+
     @api.constrains('planned_date')
     def check_planned_date(self):
         for record in self:
