@@ -7,11 +7,29 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name">Name</field>
-                        </group>
-                        <group>
-                            <field name="number_of_students">Number of Students</field>
-                            <field name="material_id">Material</field>
+                            <group>
+                                <field name="name"></field>
+                                <field name="number_of_students"></field>
+                                <field name="material_id"></field>
+                                <field name="active"></field>
+                            </group>
+                            <group>
+                                <field name="type"></field>
+                                <field name="start_date"></field>
+                                <field name="end_date"></field>
+                                <field name="responsible"></field>
+                            </group>
+                            <notebook>
+                                <page name="sessions" string="Sessions">
+                                    <field name="session_ids">
+                                        <tree>
+                                            <field name="name"></field>
+                                            <field name="planned_date"></field>
+                                            <field name="actual_date"></field>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
                         </group>
                     </sheet>
                 </form>
@@ -25,7 +43,31 @@
                     <field name="name"></field>
                     <field name="number_of_students"></field>
                     <field name="material_id"></field>
+                    <field name="type"></field>
+                    <field name="start_date"></field>
+                    <field name="end_date"></field>
+                    <field name="responsible"></field>
+                    <field name="active"></field>
                 </tree>
+            </field>
+        </record>
+        <record id="training_course_search_view" model="ir.ui.view">
+            <field name="name">training.course.view.search</field>
+            <field name="model">training.course</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string='Course'></field>
+                    <field name="start_date" string="Start Date"></field>
+                    <field name="material_id" string="Material"></field>
+                    <field name="type" string="Course Type"></field>
+                    <field name="responsible" string="Responsible"></field>
+                    <separator/>
+                    <filter name="type_online" string="Online" domain="[('type', '=', 'online')]"/>
+                    <filter name="type_onsite" string="Onsite" domain="[('type', '=', 'onsite')]"/>
+                    <separator/>
+                    <filter name="is_active" string="Active" domain="[('active', '=', 'True')]"/>
+                    <separator/>
+                </search>
             </field>
         </record>
         <record id="training_course_window_action" model="ir.actions.act_window">
@@ -34,10 +76,16 @@
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem
+            id="training_course_base_menu"
+            name="Course"
+            parent="training.training_material_base_menu"
+            sequence="30"
+            />
+        <menuitem
             id="training_course_menu"
             name="Course"
             action="training.training_course_window_action"
-            parent="training.training_material_base_menu"
+            parent="training.training_course_base_menu"
             sequence="30"
             />
     </data>

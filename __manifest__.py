@@ -26,7 +26,8 @@ Long description of module's purpose
         'views/views.xml',
         'views/templates.xml',
         'views/material.xml',
-        'views/course.xml'
+        'views/course.xml',
+        'views/session.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

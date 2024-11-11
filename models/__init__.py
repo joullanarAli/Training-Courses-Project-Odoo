@@ -3,3 +3,4 @@
 from . import models
 from . import material
 from . import course
+from . import session
