@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="training_material_form_view" model="ir.ui.view">
+            <field name="name">training.material.form.view</field>
+            <field name="model">training.material</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="name"></field>
+                </form>
+            </field>
+        </record>
+        <record id="training_material_tree_view" model="ir.ui.view">
+            <field name="name">training.material.tree.view</field>
+            <field name="model">training.material</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"></field>
+                </tree>
+            </field>
+        </record>
+        <record id="training_material_window_action" model="ir.actions.act_window">
+            <field name="name">Training Material</field>
+            <field name="res_model">training.material</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            id="training_material_base_menu"
+            name="Materials"
+            sequence="10"/>
+        <menuitem
+            id="training_material_menu"
+            name="Material"
+            parent="training_material_base_menu"
+            action="training_material_window_action"
+            sequence="20"
+            />
+    </data>
+</odoo>
